@@ -47,10 +47,9 @@ router.set(path="/sun", method="GET", handler=sun)
 def lambda_handler(event, context):
     path = event["requestContext"]["http"]["path"]
     method = event["requestContext"]["http"]["method"]
-    query_string = event["queryStringParameters"]
 
-    if "city" not in query_string:
-        return {"statusCode": 400, "body": json.dumps({"message": "city is required!"})}
+    if "queryStringParameters" not in event or "city" not in event["queryStringParameters"]:
+        return {"statusCode": 400, "body": json.dumps({"error": "query parameter city is required!"})}
 
     city = event["queryStringParameters"]["city"]
     func = router.get(path=path, method=method)
