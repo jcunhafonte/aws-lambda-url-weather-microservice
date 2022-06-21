@@ -55,39 +55,3 @@ def lambda_handler(event, context):
     city = event["queryStringParameters"]["city"]
     func = router.get(path=path, method=method)
     return func(city=city)
-
-
-if __name__ == "__main__":
-    event = {
-        "version":"2.0",
-        "routeKey":"$default",
-        "rawPath":"/temperature",
-        "rawQueryString":"city=aveiro",
-        "headers":{
-        },
-        "queryStringParameters":{
-            "city":"aveiro"
-        },
-        "requestContext":{
-            "accountId":"anonymous",
-            "apiId":"ek3o3lgdrsqa54pudjwrshxeiq0cztdf",
-            "domainName":"ek3o3lgdrsqa54pudjwrshxeiq0cztdf.lambda-url.us-west-2.on.aws",
-            "domainPrefix":"ek3o3lgdrsqa54pudjwrshxeiq0cztdf",
-            "http":{
-                "method":"GET",
-                "path":"/temperature",
-                "protocol":"HTTP/1.1",
-                "sourceIp":"88.157.47.151",
-                "userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
-            },
-            "requestId":"fe307911-1088-4702-a8ca-4d9618d60a3a",
-            "routeKey":"$default",
-            "stage":"$default",
-            "time":"21/Jun/2022:10:30:34 +0000",
-            "timeEpoch":1655807434139
-        },
-        "isBase64Encoded": False
-    }
-
-    response = lambda_handler(event, None)
-    print(response)
