@@ -45,12 +45,11 @@ router.set(path="/sun", method="GET", handler=sun)
 
 
 def main(event, context):
-    path = event["requestContext"]["http"]["path"]
-    method = event["requestContext"]["http"]["method"]
-
     if "queryStringParameters" not in event or "city" not in event["queryStringParameters"]:
         return {"statusCode": 400, "body": json.dumps({"error": "query parameter city is required!"})}
-
+    
+    path = event["requestContext"]["http"]["path"]
+    method = event["requestContext"]["http"]["method"]  
     city = event["queryStringParameters"]["city"]
     func = router.get(path=path, method=method)
     return func(city=city)
