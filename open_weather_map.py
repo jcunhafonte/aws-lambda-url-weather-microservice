@@ -34,12 +34,14 @@ class OpenWeatherMap:
 
     def get_temperature(self) -> dict:
         feels_like = self.weather["main"]["feels_like"]
-        celsius, farenheit = round(self.__kelvin_to_celsius(feels_like), 2), round(self.__kelvin_to_farenheit(feels_like), 2)
+        celsius = round(self.__kelvin_to_celsius(feels_like), 2)
+        farenheit = round(self.__kelvin_to_farenheit(feels_like), 2)
         return dict(celsius=celsius, farenheit=farenheit)
 
     def get_feels_like(self) -> dict:
         temp = self.weather["main"]["temp"]
-        celsius, farenheit = round(self.__kelvin_to_celsius(temp), 2), round(self.__kelvin_to_farenheit(temp), 2)
+        celsius = round(self.__kelvin_to_celsius(temp), 2)
+        farenheit = round(self.__kelvin_to_farenheit(temp), 2)
         return dict(celsius=celsius, farenheit=farenheit)
 
     def get_wind(self) -> dict:
@@ -64,7 +66,7 @@ class OpenWeatherMap:
     @staticmethod
     def __make_request(url: str) -> dict:
         request = Request(url)
-        log.info(f"Making request to {url}")
+        log.info(f"Starting request to {url}")
 
         try:
             response = urlopen(request)
