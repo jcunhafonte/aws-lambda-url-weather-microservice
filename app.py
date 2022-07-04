@@ -44,7 +44,7 @@ router.set(path="/visibility", method="GET", handler=visibility)
 router.set(path="/sun", method="GET", handler=sun)
 
 
-def lambda_handler(event, context):
+def main(event, context):
     path = event["requestContext"]["http"]["path"]
     method = event["requestContext"]["http"]["method"]
 
