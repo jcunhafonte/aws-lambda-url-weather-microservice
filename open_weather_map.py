@@ -33,15 +33,15 @@ class OpenWeatherMap:
         return weather
 
     def get_temperature(self) -> dict:
-        feels_like = self.weather["main"]["feels_like"]
-        celsius = round(self.__kelvin_to_celsius(feels_like), 2)
-        farenheit = round(self.__kelvin_to_farenheit(feels_like), 2)
-        return dict(celsius=celsius, farenheit=farenheit)
-
-    def get_feels_like(self) -> dict:
         temp = self.weather["main"]["temp"]
         celsius = round(self.__kelvin_to_celsius(temp), 2)
         farenheit = round(self.__kelvin_to_farenheit(temp), 2)
+        return dict(celsius=celsius, farenheit=farenheit)
+
+    def get_feels_like(self) -> dict:
+        feels_like = self.weather["main"]["feels_like"]
+        celsius = round(self.__kelvin_to_celsius(feels_like), 2)
+        farenheit = round(self.__kelvin_to_farenheit(feels_like), 2)
         return dict(celsius=celsius, farenheit=farenheit)
 
     def get_wind(self) -> dict:
